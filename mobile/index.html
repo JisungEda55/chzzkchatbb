@@ -11,20 +11,35 @@
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            background-color: #000000; 
+            background-color: rgba(0, 0, 0, 0); 
         }
         .rounded-rectangle {
             width: 95vw; 
             height: 95vh; 
             border-radius: 15px; 
             overflow: hidden; 
-            background-color: rgba(0, 0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.6);
             margin: 1%; 
         }
         iframe {
             width: 100%; 
             height: 100%; 
             border: none; 
+        }
+        #fullscreen-button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #fullscreen-button:active {
+            background-color: #0056b3;
         }
     </style>
     <script>
@@ -54,29 +69,20 @@
             }
         }
 
-        // Release Wake Lock when page is no longer visible
-        document.addEventListener('visibilitychange', async () => {
-            if (wakeLock !== null && document.visibilityState === 'visible') {
-                preventScreenSleep();
-            }
-        });
-
-        // Event listener for user interaction (click and touch to enter fullscreen and prevent screen sleep)
-        document.addEventListener('click', () => {
+        // Hide button and activate fullscreen and Wake Lock
+        function activateFullscreen() {
             openFullscreen();
             preventScreenSleep();
-        });
-
-        // For mobile devices (touchstart event)
-        document.addEventListener('touchstart', () => {
-            openFullscreen();
-            preventScreenSleep();
-        });
+            document.getElementById('fullscreen-button').style.display = 'none';
+        }
     </script>
 </head>
 <body>
     <div class="rounded-rectangle">
         <iframe src="https://chzzk-api.ddutto.com/chat/c68c3e1788d86ff11740edcd7040a8e8?setting=twitch:jisungeda05,kick:HaeSolEYo,font:Paperlogy-8ExtraBold,font-size:32px,text-color:ffffff,remove-anim2:6000,no-nick,no-color-hash,no-colon" title="Chzzk Chat"></iframe>
     </div>
+
+    <!-- Fullscreen button -->
+    <button id="fullscreen-button" onclick="activateFullscreen()">FullScreen</button>
 </body>
 </html>
