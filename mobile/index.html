@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Chat</title>
+    <title>CIA Warning!</title>
     <style>
         html, body {
             height: 100%;
@@ -61,8 +61,14 @@
             }
         });
 
-        // Event listener for user interaction (click to enter fullscreen and prevent screen sleep)
+        // Event listener for user interaction (click and touch to enter fullscreen and prevent screen sleep)
         document.addEventListener('click', () => {
+            openFullscreen();
+            preventScreenSleep();
+        });
+
+        // For mobile devices (touchstart event)
+        document.addEventListener('touchstart', () => {
             openFullscreen();
             preventScreenSleep();
         });
