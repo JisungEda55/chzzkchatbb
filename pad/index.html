@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>65:35 Split Container</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+        .left {
+            flex: 65;
+            background-color: black;
+            padding: 20px;
+            border: 1px solid transparent;
+            animation: showBorder 6s forwards;
+        }
+        .right {
+            flex: 35;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+        }
+        .top-right, .bottom-right {
+            flex: 1;
+            padding: 0;
+            margin: 0;
+            border: 1px solid transparent;
+            animation: showBorder 6s forwards;
+        }
+        .top-right {
+            background-color: black;
+        }
+        .bottom-right {
+            background-color: black;
+        }
+        #fullscreen-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        @keyframes showBorder {
+            0% {
+                border-color: blue;
+            }
+            100% {
+                border-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="left">
+            <iframe src="https://chzzk.naver.com/donation/donation@f81a76f722f08ab22bdddf46a125a53a" width="100%" height="100%" frameborder="0"></iframe>
+        </div>
+        <div class="right">
+            <div class="top-right">
+                <iframe src="https://chzzk.naver.com/chat/0b7b09d1043e10676ef92ac234bb337f" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+            <div class="bottom-right">
+                <iframe src="https://chzzk-api.ddutto.com/chat/c68c3e1788d86ff11740edcd7040a8e8?setting=twitch:jisungeda05,kick:HaeSolEYo,font:Paperlogy-8ExtraBold,font-size:36px,text-color:ffffff,remove-anim2:6000,no-color-hash,no-badge" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+    <button id="fullscreen-btn" onclick="toggleFullscreen()">FullScreen</button>
+    <script>
+        function toggleFullscreen() {
+            const elem = document.getElementById("container");
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) { // Firefox
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { // IE/Edge
+                elem.msRequestFullscreen();
+            }
+            document.getElementById("fullscreen-btn").style.display = "none";
+        }
+    </script>
+</body>
+</html>
